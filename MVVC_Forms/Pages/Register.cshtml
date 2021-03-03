@@ -1,0 +1,21 @@
+﻿@page
+@model MVVC_Forms.Pages.RegisterModel
+@{
+    ViewData["Title"]= "Register";
+}
+
+
+<form method="post">
+    <div asp-validation-summary="All" style="color:red"></div>
+    <input asp-for="Person.name" placeholder="Name" />
+    <input asp-for="Person.age" placeholder="Age" />
+    <input asp-for="Person.address" placeholder="Address" />
+    <input asp-for="Person.contact" placeholder="Contact No." />
+    <input asp-for="Person.birthday" placeholder="Birthdate" />
+    <input asp-for="Person.email" placeholder="Email" />
+    <input asp-for="Person.ethnicity" placeholder="Ethnicity" />
+    <button type="submit">Submit</button>
+
+</form>
+
+
