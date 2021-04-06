@@ -11,24 +11,32 @@ namespace MVVC_Forms.Pages
 {
     public class RegisterModel : PageModel
     {
+        public RegisterModel(appDBContext appDBContext)
+        {
+            _appDBContext = appDBContext;
+        }
+        private readonly appDBContext _appDBContext;
         [BindProperty]
        public PersonModel Person { get; set; }
+        public List<PersonModel> Persons = new List<PersonModel>();
         public void OnGet()
         {
+            Persons = _appDBContext.PersonModels.ToList();
         }
-        public ActionResult OnPost() 
-        {
+         public ActionResult OnPost() 
+         {
 
-            if (!ModelState.IsValid)
-            {
+             if (!ModelState.IsValid)
+             {
+                Persons = _appDBContext.PersonModels.ToList();
                 return Page();
-            }
-     
-                return Redirect("/Index ");
-            
+             }
 
-    
-           
+                 
+            _appDBContext.PersonModels.Add(Person);
+            _appDBContext.SaveChanges();
+            return Redirect("/Register ");
+
             /*string name = Request.Form["txtname"];
             string age = Request.Form["txtage"];
             string address = Request.Form["txtAddress"];
@@ -42,7 +50,31 @@ namespace MVVC_Forms.Pages
                                                     "\nYour BirthDay is:"+ Person.birthday +
                                                     "\nYour Email is:"+ Person.email +
                                                     "\nYour Ethnicity is:"+ Person.ethnicity);*/
-           
+
+        }
+        /* public void OnPost()
+         {
+             if (!ModelState.IsValid)
+             {
+                 return Page();
+             }
+
+             return Redirect("/Index ");
+             _appDBContext.PersonModels.Add(Person);
+             _appDBContext.SaveChanges();
+         }*/
+        public void OnGetDelete(string id)
+        {
+
+            var Person = _appDBContext.PersonModels.FirstOrDefault(Person => Person.name == id);
+
+            if (Person != null)
+            {
+                _appDBContext.PersonModels.Remove(Person);
+                _appDBContext.SaveChanges();
+            }
+            OnGet();
+
         }
     }
 }

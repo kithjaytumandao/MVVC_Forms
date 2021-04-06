@@ -1,0 +1,33 @@
+﻿@page
+@model MVVC_Forms.Pages.EditModel
+@{
+}
+<form method="post">
+    <h1>Updated Registration</h1>
+    <div asp-validation-summary="All" style="color:red"></div>
+    <input type="hidden" asp-for="Person.name" />
+    <div class="form-control"></div>
+    <div class="form-control">
+        <input asp-for="Person.name" placeholder="Name" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.age" placeholder="Age" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.address" placeholder="Address" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.contact" placeholder="Contact No." />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.birthday" placeholder="Birthdate" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.email" placeholder="Email" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.ethnicity" placeholder="Ethnicity" />
+    </div>
+    <button type="submit">Update</button>
+
+</form>

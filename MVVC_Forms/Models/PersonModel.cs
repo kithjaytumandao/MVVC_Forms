@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace MVVC_Forms.Models
 {
     public class PersonModel
-    {
+    {   
+        [Key]
         [Required]
         [StringLength(30)]
         public string name { get; set; }

@@ -6,16 +6,59 @@
 
 
 <form method="post">
+    <h1>Registration</h1>
     <div asp-validation-summary="All" style="color:red"></div>
-    <input asp-for="Person.name" placeholder="Name" />
-    <input asp-for="Person.age" placeholder="Age" />
-    <input asp-for="Person.address" placeholder="Address" />
-    <input asp-for="Person.contact" placeholder="Contact No." />
-    <input asp-for="Person.birthday" placeholder="Birthdate" />
-    <input asp-for="Person.email" placeholder="Email" />
-    <input asp-for="Person.ethnicity" placeholder="Ethnicity" />
+    <div class="form-control"></div>
+    <div class="form-control">
+        <input asp-for="Person.name" placeholder="Name" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.age" placeholder="Age" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.address" placeholder="Address" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.contact" placeholder="Contact No." />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.birthday" placeholder="Birthdate" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.email" placeholder="Email" />
+    </div>
+    <div class="form-control">
+        <input asp-for="Person.ethnicity" placeholder="Ethnicity" />
+    </div>
     <button type="submit">Submit</button>
 
 </form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Birthday</th>
+            <th>Ethnicity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model.Persons)
+        {
+            <tr>
+                <td>@person.name</td>
+                <td>@person.age</td>
+                <td>@person.address</td>
+                <td>@person.contact</td>
+                <td>@person.birthday</td>
+                <td>@person.ethnicity</td>
+                <td><a asp-page="Edit" asp-route-id="@person.name">Edit</a>|<a asp-page="Registration" asp-page-handler="Delete" asp-route-id="@person.name">Delete</a></td>|
+</tr>
+        }
+    </tbody>
+</table>
 
 
